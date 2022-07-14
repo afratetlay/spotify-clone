@@ -16,12 +16,15 @@ const scopes = [
 
 export const getTokenFromUrl = () => {
   return window.location.hash
-    .sunstring(1)
+    .substring(1)
     .split("&")
     .reduce((initial, item) => {
       // #accessToken=musupersecretkey&name=afra
-      let parts = item.split("=");
-    });
+      var parts = item.split("=");
+      initial[parts[0]] = decodeURIComponent(parts[1]);
+
+      return initial;
+    }, {});
 };
 
 export const loginUrl = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
