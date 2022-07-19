@@ -4,12 +4,14 @@ import Login from "./Login";
 import { getTokenFromUrl } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Player";
+import { useDataLayerValue } from "./DataLayer";
 
 const spotify = new SpotifyWebApi();
 
 // 3a65fb5ed3fa40ffb8e11cc49f0d4c30
 function App() {
   const [token, setToken] = useState(null);
+  const [{}, dispatch] = useDataLayerValue();
   //Run code based on a given condition
   useEffect(() => {
     const hash = getTokenFromUrl(); // We got the token from the URL
